@@ -1,5 +1,7 @@
 "use client"
 
+import * as dotenv from 'dotenv'
+dotenv.config()
 import { create } from "zustand"
 
 // Types
