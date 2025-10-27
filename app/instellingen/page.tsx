@@ -114,7 +114,7 @@ export default function InstellingenPage() {
 
                   <div className="space-y-2">
                     <Label htmlFor="institution-name">Naam Instelling *</Label>
-                    <Input id="institution-name" name="institution-name" placeholder="Bijv. Van Gogh Museum" required />
+                    <Input id="institution-name" name="institution-name" placeholder="" required />
                   </div>
 
                   <div className="space-y-2">
