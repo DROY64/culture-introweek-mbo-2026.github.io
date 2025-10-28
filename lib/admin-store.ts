@@ -3,7 +3,7 @@
 import * as dotenv from 'dotenv'
 import { create } from "zustand"
 import { createClient } from '@supabase/supabase-js'
-dotenv.config()
+
 // Types
 export interface Institution {
   id: string
@@ -260,12 +260,13 @@ export const useAdminStore = create<AdminState>((set, get) => ({
   login: async (email: string, password: string) => {
     // Mock authentication - in production, this would call an API
     const SUPABASE_URL = "https://cojdqiisamtfbhzioupu.supabase.co"
-    const supabase = createClient(SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
+    const supabase = createClient(SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!);
     if (email.includes("@rocva.nl") && password.length >= 6) {
       const { data, error } = await supabase
         .from('admins')
         .select()
-        .or('email.{email}')
+        .eq('email', {email})
+        .eq('password', {password});
       // set({
       //   isAuthenticated: true,
       //   currentUser: { email, role: "admin" },

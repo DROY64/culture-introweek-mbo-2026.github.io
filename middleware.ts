@@ -1,19 +1,9 @@
-import { NextResponse } from "next/server"
-import type { NextRequest } from "next/server"
+import {NextResponse, type NextRequest } from "next/server"
+import { updateSession } from '@/lib/supabase/middleware'
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   // Check if accessing admin dashboard
-  if (request.nextUrl.pathname.startsWith("/admin/dashboard")) {
-    // In a real app, check for auth token in cookies
-    // For now, redirect to login if not authenticated
-    const isAuthenticated = request.cookies.get("admin_session")
-
-    if (!isAuthenticated) {
-      return NextResponse.redirect(new URL("/admin/login", request.url))
-    }
-  }
-
-  return NextResponse.next()
+  return await updateSession(request)
 }
 
 export const config = {
