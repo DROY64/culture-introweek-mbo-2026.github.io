@@ -1,9 +1,9 @@
 "use client"
 
-// import * as dotenv from 'dotenv'
-// dotenv.config()
+import * as dotenv from 'dotenv'
 import { create } from "zustand"
-
+import { createClient } from '@supabase/supabase-js'
+dotenv.config()
 // Types
 export interface Institution {
   id: string
@@ -255,14 +255,21 @@ export const useAdminStore = create<AdminState>((set, get) => ({
   programActivities: mockActivities,
   isAuthenticated: false,
   currentUser: null,
+  
 
   login: async (email: string, password: string) => {
     // Mock authentication - in production, this would call an API
+    const SUPABASE_URL = "https://cojdqiisamtfbhzioupu.supabase.co"
+    const supabase = createClient(SUPABASE_URL, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY);
     if (email.includes("@rocva.nl") && password.length >= 6) {
-      set({
-        isAuthenticated: true,
-        currentUser: { email, role: "admin" },
-      })
+      const { data, error } = await supabase
+        .from('admins')
+        .select()
+        .or('email.{email}')
+      // set({
+      //   isAuthenticated: true,
+      //   currentUser: { email, role: "admin" },
+      // })
       return true
     }
     return false
