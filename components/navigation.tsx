@@ -48,8 +48,7 @@ export function Navigation() {
               <Logo className="w-full h-full" />
             </div>
             <div className="text-base md:text-xl font-bold tracking-tight hidden sm:block">
-              <span className="text-primary">Culturele</span> <span className="text-foreground">IntroWeek</span>
-              <span className="text-foreground">MBO</span>
+              <span className="text-foreground">Culturele IntroWeek MBO</span>
             </div>
           </Link>
 

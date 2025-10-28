@@ -103,14 +103,6 @@ export function Footer() {
                   cultureleintroweek@rocva.nl
                 </a>
               </li>
-              <li className="flex items-center gap-2 text-muted-foreground">
-                <Phone className="w-4 h-4 shrink-0" />
-                <span>020 123 4567</span>
-              </li>
-              <li className="flex items-start gap-2 text-muted-foreground">
-                <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
-                <span>Amsterdam, Nederland</span>
-              </li>
             </ul>
           </div>
         </div>
